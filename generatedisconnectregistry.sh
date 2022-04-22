@@ -44,13 +44,13 @@ sleep 10
 
 export REG_SECRET==`echo -n 'dummy:dummy' | base64 -w0`
 export PULLSECRET=/home/auser/pull-secret.json
-export LOCAL_REG='registry.ocp4.mrdojojo:5000'
+export LOCAL_REG='registry.ocp4.mrdojojo.com:5000'
 export LOCAL_REPO='ocp4/openshift4'
 
 
-cat pull-secret.json | jq '.auths += {"registry.ocp4.mrdojojo:5000": {"auth": "REG_SECRET","email": "j@mrdojojo"}}' | sed "s/REG_SECRET/$REG_SECRET/" > ${REGISTRY_BASE}/downloads/secrets/pull-secret-bundle.json
+cat pull-secret.json | jq '.auths += {"registry.ocp4.mrdojojo.com:5000": {"auth": "REG_SECRET","email": "j@mrdojojo.com"}}' | sed "s/REG_SECRET/$REG_SECRET/" > ${REGISTRY_BASE}/downloads/secrets/pull-secret-bundle.json
 cat pull-secret-bundle.json | jq
-echo '{ "auths": {}}' | jq '.auths += {"registry.ocp4.mrdojojo:5000": {"auth": "REG_SECRET","email": "j@mrdojojo"}}' | sed "s/REG_SECRET/$REG_SECRET/" | jq -c .> pull-secret-registry.json
+echo '{ "auths": {}}' | jq '.auths += {"registry.ocp4.mrdojojo.com:5000": {"auth": "REG_SECRET","email": "j@mrdojojo.com"}}' | sed "s/REG_SECRET/$REG_SECRET/" | jq -c .> pull-secret-registry.json
 
 export LOCAL_SECRET_JSON="${REGISTRY_BASE}/downloads/secrets/pull-secret-bundle.json" 
 
